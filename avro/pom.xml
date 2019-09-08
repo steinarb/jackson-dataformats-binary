@@ -18,6 +18,7 @@ abstractions.
     <!-- Generate PackageVersion.java into this directory. -->
     <packageVersion.dir>com/fasterxml/jackson/dataformat/avro</packageVersion.dir>
     <packageVersion.package>${project.groupId}.avro</packageVersion.package>
+    <old.jackson.version>1.9.13</old.jackson.version>
   </properties>
 
   <dependencies>
@@ -25,16 +26,28 @@ abstractions.
     <dependency>
       <groupId>com.fasterxml.jackson.core</groupId>
       <artifactId>jackson-annotations</artifactId>
+      <scope>provided</scope>
     </dependency>
     <!--  and databind for Avro Schema generation... -->
     <dependency>
       <groupId>com.fasterxml.jackson.core</groupId>
       <artifactId>jackson-databind</artifactId>
+      <scope>provided</scope>
     </dependency>
     <dependency>
       <groupId>org.apache.avro</groupId>
       <artifactId>avro</artifactId>
       <version>1.8.2</version>
+      <exclusions>
+        <exclusion>
+          <groupId>com.google.guava</groupId>
+          <artifactId>guava</artifactId>
+        </exclusion>
+        <exclusion>
+          <groupId>org.slf4j</groupId>
+          <artifactId>slf4j-api</artifactId>
+        </exclusion>
+      </exclusions>
     </dependency>
 
     <!-- and for testing we need logback -->
@@ -73,6 +86,13 @@ abstractions.
       <plugin>
         <groupId>org.moditect</groupId>
         <artifactId>moditect-maven-plugin</artifactId>
+      </plugin>
+      <plugin>
+        <groupId>org.apache.karaf.tooling</groupId>
+        <artifactId>karaf-maven-plugin</artifactId>
+        <configuration>
+            <includeTransitiveDependency>true</includeTransitiveDependency>
+        </configuration>
       </plugin>
     </plugins>
   </build>
