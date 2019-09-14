@@ -33,14 +33,17 @@ tree model)
     <dependency>
       <groupId>com.fasterxml.jackson.core</groupId>
       <artifactId>jackson-annotations</artifactId>
+      <scope>provided</scope>
     </dependency>
     <dependency>
       <groupId>com.fasterxml.jackson.core</groupId>
       <artifactId>jackson-core</artifactId>
+      <scope>provided</scope>
     </dependency>
     <dependency>
       <groupId>com.fasterxml.jackson.core</groupId>
       <artifactId>jackson-databind</artifactId>
+      <scope>provided</scope>
     </dependency>
 
     <!-- will come from parent pom for later versions -->
@@ -72,6 +75,10 @@ tree model)
       <plugin>
 	<groupId>org.moditect</groupId>
 	<artifactId>moditect-maven-plugin</artifactId>
+      </plugin>
+      <plugin>
+        <groupId>org.apache.karaf.tooling</groupId>
+        <artifactId>karaf-maven-plugin</artifactId>
       </plugin>
     </plugins>
   </build>
